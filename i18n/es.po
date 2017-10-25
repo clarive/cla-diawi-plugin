@@ -1,0 +1,27 @@
+#: init/diawi-service.js
+msgid "Upload App to Diawi"
+msgstr "Subir App a Diawi"
+
+#: init/diawi-service.js
+msgid "Post to Diawi"
+msgstr "Post to Diawi"
+
+#: init/diawi-service.js
+msgid "App uploaded correctly: "
+msgstr "App subida correctamente: "
+
+#: public/form/diawi-form.js
+msgid "Server"
+msgstr "Servidor"
+
+#: public/form/diawi-form.js
+msgid "File Path"
+msgstr "Ruta del Fichero"
+
+#: public/form/diawi-form.js
+msgid "Diawi Parameters"
+msgstr "Parámetros opcionales Diawi"
+
+#: public/form/diawi-form.js
+msgid "Token"
+msgstr "Token"
