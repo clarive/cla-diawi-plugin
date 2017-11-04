@@ -33,26 +33,13 @@
         allowBlank: false
     });
 
-    var errorBox = Cla.ui.errorManagementBox({
-        errorTypeName: 'errors',
-        errorTypeValue: params.data.errors || 'fail',
-        rcOkName: 'rcOk',
-        rcOkValue: params.data.rcOk,
-        rcWarnName: 'rcWarn',
-        rcWarnValue: params.data.rcWarn,
-        rcErrorName: 'rcError',
-        rcErrorValue: params.data.rcError,
-        errorTabsValue: params.data
-    });
-
     var panel = Cla.ui.panel({
         layout: 'form',
         items: [
             serverComboBox,
             token,
             filePath,
-            argumentsTextField,
-            errorBox
+            argumentsTextField
         ]
     });
 

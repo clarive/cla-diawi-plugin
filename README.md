@@ -1,5 +1,7 @@
 # Diawi Plugin
 
+<img src="https://cdn.rawgit.com/clarive/cla-diawi-plugin/master/public/icon/diawi.svg?sanitize=true" alt="Diawi Plugin" title="Diawi Plugin" width="120" height="120">
+
 The Diawi plugin will allow you to upload iOS and Android apps (.ipa, .apk, .zip) to Diawi from Clarive in an automated way.
 
 ## What is Diawi
@@ -11,40 +13,78 @@ Diawi is a tool for developers to deploy developments and applications directly 
 To install the plugin, place the `cla-diawi-plugin` folder inside `$CLARIVE_BASE/plugins` directory in the Clarive
 instance.
 
-## How to Use
-
-Once the plugin is placed in its folder, you can start using it by going to your Clarive instance.
-
-After restarting your Clarive instance, you will have a new palette service called 'Upload App to Diawi'.
-
 ### Upload Diawi App
 
-The parameters available for this service are:
+The parameters available are:
 
-- **Server** - The Generic Server Resource where the file to be uploaded is located.
-- **Token** - Token to access to Diawi taken from your Diawi user preferences.
-- **File Path** - Path where the file to be uploaded to the Diawi tool is located.
-- **Diawi Parameters** - Table where you can add custom commands you want. These commands are available in the Daiwi API.
-- **Errors and Output** - These two fields deal with managing control errors. The options are:
-   - **Fail and Output Error** - Search for the configured error pattern in the script output. If found, an error
-     message is displayed in the monitor showing the match.
-   - **Warning and Output warning** - Search for configured warning pattern in script output. If found, an error message
-     is displayed in the monitor showing the match.
-   - **Custom** - If the Errors combo is set to custom, a new form is displayed to define the behavior with the
-     following fields:
-   - **Ok** - Range of return code values for the script to have succeeded. No message will be displayed in the monitor.
-   - **Warn** - Range of return code values to warn the user. A warning will be displayed in the monitor.
-   - **Error** - Range of return code values for the script to have failed. An error message will be displayed in the
-     monitor.
+- **Server (variable name: server)** - The Generic Server Resource where the file to be uploaded is located.
+- **Token (token)** - Token to access to Diawi taken from your Diawi user preferences.
+- **File Path (file_path)** - Full path to the application file.
+- **Diawi Parameters (diawi_args)** - You can add custom parameters for the Diawi API. You can find them at Diawi website.
 
-The plugin will return the Request output.
+## How to use
 
-Configuration example:
+### In Clarive EE
 
-      Server: Development Server
+Once the plugin is placed in its folder, you can find this service in the palette in the section of generic service and can be used like any other palette op.
+
+Op Name: **Upload Diawi App**
+
+Example:
+
+```yaml
+      Server: My App Server
       Token: apedikeksileshfi
       File Path: ${CLARIVE_BASE}/file.ipa
       Diawi Parameters: 
         comment=My first tab
         callback_emails=me@clarive.com
+``` 
 
+### In Clarive SE
+
+#### Rulebook
+
+If you want to use the plugin through the Rulebook, in any `do` block, use this ops as examples to configure the different parameters:
+
+```yaml
+rule: Diawi demo
+do:
+   - diawi_upload:
+      server: 'server_mid'                    # Required. Use Resource MID
+      token: 'apedikeksileshfi'               # Required
+      file_path: '${CLARIVE_BASE}/file.ipa'   # Required
+      diawi_args: ['comment=My first tab', 'callback_emails=me@clarive.com']
+```
+
+##### Outputs
+
+###### Success
+
+The plugin will return the Request output.
+
+###### Possible configuration failures
+
+**Upload failed**
+
+The service will return the output from the Diawi API.
+
+**Variable required**
+
+```yaml
+Error in rulebook (compile): Required argument(s) missing for op "diawi_upload": "token"
+```
+
+Make sure you have all required variables defined.
+
+**Not allowed variable**
+
+```yaml
+Error in rulebook (compile): Argument `Token` not available for op "diawi_upload"
+```
+
+Make sure you are using the correct paramaters (make sure you are writing the variable names correctly).
+
+## More questions?
+
+Feel free to join **[Clarive Community](https://community.clarive.com/)** to resolve any of your doubts.

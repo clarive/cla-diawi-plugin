@@ -4,11 +4,28 @@ reg.register('service.diawi.task', {
     name: _('Upload App to Diawi'),
     icon: '/plugin/cla-diawi-plugin/icon/diawi.svg',
     form: '/plugin/cla-diawi-plugin/form/diawi-form.js',
+    rulebook: {
+        moniker: 'diawi_upload',
+        description: _('Uploads apps to Diawi'),
+        required: [ 'server', 'file_path', 'token'],
+        allow: ['server', 'file_path', 'token', 'diawi_args'],
+        mapper: {
+            'file_path':'filePath',
+            'diawi_args':'diawiArgs'
+        },
+        examples: [{
+            diawi_upload: {
+                server: 'diawi_server',
+                token: 'apedikeksileshfi',
+                file_path: '${CLARIVE_BASE}/file.ipa',
+                diawi_args: ['comment=My first tab', 'callback_emails=me@clarive.com']
+            }
+        }]
+    },
     handler: function(ctx, config) {
 
         var log = require("cla/log");
         var reg = require("cla/reg");
-        var errors = config.errors;
         var server = config.server;
         var token = config.token || '';
         var filePath = config.filePath || '';
