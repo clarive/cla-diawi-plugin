@@ -1,16 +1,6 @@
 (function(params) {
     var data = params.data;
 
-    var serverComboBox = Cla.ui.ciCombo({
-        name: 'server',
-        class: 'generic_server',
-        fieldLabel: _('Server'),
-        value: data.server || '',
-        allowBlank: false,
-        width: 400,
-        with_vars: 1
-    });
-
     var filePath = Cla.ui.textField({
         name: 'filePath',
         fieldLabel: _('File Path'),
@@ -36,7 +26,6 @@
     var panel = Cla.ui.panel({
         layout: 'form',
         items: [
-            serverComboBox,
             token,
             filePath,
             argumentsTextField

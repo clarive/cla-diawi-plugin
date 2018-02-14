@@ -7,15 +7,14 @@ reg.register('service.diawi.task', {
     rulebook: {
         moniker: 'diawi_upload',
         description: _('Uploads apps to Diawi'),
-        required: [ 'server', 'file_path', 'token'],
-        allow: ['server', 'file_path', 'token', 'diawi_args'],
+        required: ['file_path', 'token'],
+        allow: [ 'file_path', 'token', 'diawi_args'],
         mapper: {
             'file_path':'filePath',
             'diawi_args':'diawiArgs'
         },
         examples: [{
             diawi_upload: {
-                server: 'diawi_server',
                 token: 'apedikeksileshfi',
                 file_path: '${CLARIVE_BASE}/file.ipa',
                 diawi_args: ['comment=My first tab', 'callback_emails=me@clarive.com']
@@ -26,10 +25,10 @@ reg.register('service.diawi.task', {
 
         var log = require("cla/log");
         var reg = require("cla/reg");
-        var server = config.server;
+
         var token = config.token || '';
         var filePath = config.filePath || '';
-        var diawiArgs = config.diawiArgs || '';
+        var diawiArgs = config.diawiArgs || [];
         var customParams;
 
         var headers = {
@@ -48,7 +47,7 @@ reg.register('service.diawi.task', {
                 method: 'POST',
                 url: urlDiawi,
                 headers: headers,
-                body: body,
+                body: body
             }
         });
         log.info(_("App uploaded correctly: "), output.content);

@@ -17,7 +17,6 @@ instance.
 
 The parameters available are:
 
-- **Server (variable name: server)** - The Generic Server Resource where the file to be uploaded is located.
 - **Token (token)** - Token to access to Diawi taken from your Diawi user preferences.
 - **File Path (file_path)** - Full path to the application file.
 - **Diawi Parameters (diawi_args)** - You can add custom parameters for the Diawi API. You can find them at Diawi website.
@@ -33,7 +32,6 @@ Op Name: **Upload Diawi App**
 Example:
 
 ```yaml
-      Server: My App Server
       Token: apedikeksileshfi
       File Path: ${CLARIVE_BASE}/file.ipa
       Diawi Parameters: 
@@ -51,7 +49,6 @@ If you want to use the plugin through the Rulebook, in any `do` block, use this 
 rule: Diawi demo
 do:
    - diawi_upload:
-      server: 'server_mid'                    # Required. Use Resource MID
       token: 'apedikeksileshfi'               # Required
       file_path: '${CLARIVE_BASE}/file.ipa'   # Required
       diawi_args: ['comment=My first tab', 'callback_emails=me@clarive.com']
