@@ -1,7 +1,7 @@
 name: Diawi Plugin
 description: The Diawi plugin will allow you to upload iOS and Android apps (.ipa, .apk, .zip) to Diawi from Clarive in an automated way.
 version: 1.0
-icon: https://cdn.rawgit.com/clarive/cla-diawi-plugin/master/public/icon/diawi.svg?sanitize=true
+icon: https://cdn.jsdelivr.net/gh/clarive/cla-diawi-plugin@master/public/icon/diawi.svg?sanitize=true
 url: https://github.com/clarive/cla-diawi-plugin
 requires:
   - clarive_version: 6.8 <= version
